@@ -1,1 +1,1 @@
-Esta carpeta es para las entregas de Inegniería de Software
+Esta carpeta es para las entregas de Ingeniería de Software
