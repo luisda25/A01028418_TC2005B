@@ -1,5 +1,6 @@
 # Construcción de Software y toma de decisiones
 Luis Daniel Filorio Luna A01028418
+Este repositorio será usado para entrega y actividades del curso
 ## Objetivos del curso
 1. Adaptar metodologías de desarrollo de software de acuerdo a las necesidades de un equipo de trabajo bajo estándares internacionales.
 2. Definir requerimientos con base en estándares internacionales describiendo las necesidades que demanda el sistema.
