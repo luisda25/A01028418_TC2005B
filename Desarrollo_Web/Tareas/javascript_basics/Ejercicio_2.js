@@ -1,3 +1,5 @@
+"use strict";
+
 function bubbleSort(lista) {
     const n = lista.length;
     let flag;

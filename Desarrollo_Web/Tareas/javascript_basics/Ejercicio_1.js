@@ -1,3 +1,5 @@
+"use strict";
+
 function no_repeat(cadena) {
     const count = {};
 
