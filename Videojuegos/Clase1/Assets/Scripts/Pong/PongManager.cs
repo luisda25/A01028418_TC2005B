@@ -9,6 +9,8 @@ Luis Daniel Filorio Luna A01028418
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// Neccessary to display text in the UI
+using TMPro;
 
 public class PongManager : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class PongManager : MonoBehaviour
     [SerializeField] GameObject ballPrefab;
     [SerializeField] float speed;
     
+    [SerializeField] TMP_Text scoreRight;
+    [SerializeField] TMP_Text scoreLeft;
     public int pointsLeft;
     public int pointsRight;
 
@@ -30,6 +34,15 @@ public class PongManager : MonoBehaviour
     {
         // Reset ball if the key R is pressed
         if(Input.GetKeyDown(KeyCode.R) && ball != null)
+        {
+            Reset();
+        }
+    }
+
+    public void Reset()
+    {
+        // Check that there is a ball and if destroys it
+        if(ball != null)
         {
             Destroy(ball);
             InitGame();
@@ -56,10 +69,12 @@ public class PongManager : MonoBehaviour
         if(side == "left")
         {
             pointsLeft++;
+            scoreLeft.text = pointsLeft.ToString();
             InitGame();
         } else if (side == "right")
         {
             pointsRight++;
+            scoreRight.text = pointsRight.ToString();
             InitGame();
         }
     }
