@@ -8,23 +8,21 @@ const app = express();
 let card_list = [
     {
         id: '1',
-        data: {
-            cardName: 'Carta 1',
-            description: 'Descripcion de la carta 1',
-            element: 'Tipo 1',
-            passive: 'Habilidad pasiva 1',
-            damage: 5
-        }
+        cardName: 'Carta 1',
+        description: 'Descripcion de la carta 1',
+        element: 'Tipo 1',
+        passive: 'Habilidad pasiva 1',
+        damage: 5
+        
     },
     {
         id: '2',
-        data: {
-            cardName: 'Carta 2',
-            description: 'Descripcion de la carta 2',
-            element: 'Tipo 2',
-            passive: 'Habilidad pasiva 2',
-            damage: 3
-        }
+        cardName: 'Carta 2',
+        description: 'Descripcion de la carta 2',
+        element: 'Tipo 2',
+        passive: 'Habilidad pasiva 2',
+        damage: 3
+        
     }
 ];
 
@@ -51,26 +49,28 @@ app.get('/cards/:id', (req, res)=>{
 
 app.post('/cards/post', (req, res) => {
     const newCards = req.body;
-    const input = [];
+    const attributes = ['id', 'cardName', 'description', 'element', 'passive', 'damage'];
 
-    newCards.forEach(newCard => {
-        if (!newCard.id || !newCard.data) {
-            input.push({ id: newCard.id, message: 'Datos incompletos' });
-        } else if (card_list.find(card => card.id == newCard.id)) {
-            input.push({ id: newCard.id, message: 'La carta ya existe' });
-        } else {
-            card_list.push(newCard);
-            input.push({ message: 'Carta creada correctamente' });
+    for (let newCard of newCards) {
+        for (let attribute of attributes) {
+            if (!newCard.hasOwnProperty(attribute)) {
+                return res.status(400).json({ message: 'No se encontraron los atributos necesarios.' });
+            }
         }
-    });
-
-    res.json(input);
+        for (let card of card_list) {
+            if (card.id === newCard.id) {
+                return res.status(400).json({ message: 'No se pudo agregar la carta, ya existe en la lista.' });
+            }
+        }
+        card_list.push(newCard);
+    }
+    res.status(200).json({ message: 'Las cartas se han agregado correctamente.' });
 });
 
 app.delete('/cards/delete/:id', (req, res) => {
     const cardI = card_list.findIndex(card => card.id === req.params.id);
     if(cardI === -1) {
-        res.status(404).json({ message : 'Carta no encontrada' });
+        res.status(404).json({ message : 'La carta no se encontró en la lista.' });
     } else {
         card_list.splice(cardI, 1);
         res.json({ message : 'Carta eliminada correctamente' });
@@ -79,29 +79,17 @@ app.delete('/cards/delete/:id', (req, res) => {
 
 app.put('/cards/update/:id', (req, res) => {
     const id = req.params.id;
-    const updateCard = req.body;
-    let cardI = card_list.findIndex(card => card.id === id);
+    const updateAttributes = req.body;
 
-    if (cardI !== -1) {
-        for(let key in updateCard) {
-            if(updateCard.hasOwnProperty(key)) {
-                if(key === "data") {
-                    for(let subKey in updateCard[key]) {
-                        if(updateCard[key].hasOwnProperty(subKey)) {
-                            if(card_list[cardI][key] && card_list[cardI][key][subKey]) {
-                                card_list[cardI][key][subKey] = updateCard[key][subKey];
-                            }
-                        }
-                    }
-                } else {
-                    card_list[cardI][key] = updateCard[key];
-                }
-            }
-        }
-        res.json({ message: 'Carta actualizada correctamente' });
-    } else {
-        res.status(404).json({ message: 'Carta no encontrada' });
+    let cardI = card_list.findIndex(card => card.id === id);
+    if (cardI === -1) {
+        return res.status(404).json({ message: 'La carta no se encontró en la lista.' });
     }
+
+    for (let attribute in updateAttributes) {
+        card_list[cardI][attribute] = updateAttributes[attribute];
+    }
+    res.status(200).json({ message: 'La carta se ha actualizado correctamente.' });
 });
 
 
