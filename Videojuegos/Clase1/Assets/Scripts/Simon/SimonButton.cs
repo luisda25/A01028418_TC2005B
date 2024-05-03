@@ -1,5 +1,5 @@
 /*
-Highlight the button and mae it play a sound
+Highlight the button and make it play a sound
 
 Luis Daniel Filorio Luna A01028418
 */

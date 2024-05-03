@@ -1,6 +1,6 @@
 
 /*
-Mange the floew of the Simon Game
+Mange the flow of the Simon Game
 Keep track of the turn, and the list of buttons to press
 
 Luis Daniel Filorio Luna A01028418
@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SimonController : MonoBehaviour
 {
@@ -23,21 +24,26 @@ public class SimonController : MonoBehaviour
     [SerializeField] int numButtons;
     [SerializeField] GameObject buttonPrefab;
     [SerializeField] Transform buttonParent;
+    [SerializeField] TMP_Text scorelevel;
+    [SerializeField] TMP_Text GameOverText;
+    [SerializeField] TMP_Text HighestLevelText;
+    [SerializeField] float delayDecrease = 0.1f;
+    [SerializeField] float delayMin = 0.1f;
+    private int highestLevel;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        delay = 1.0f;
+        level = 1;
+        highestLevel = 1;
+        scorelevel.text = "Level: " + level.ToString();
+        HighestLevelText.text = "Highest Level: " + highestLevel.ToString();
         PrepareButtons();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void PrepareButtons()
+    public void PrepareButtons()
     {
         for (int i = 0; i < numButtons; i++) {
             int index = i;
@@ -60,13 +66,35 @@ public class SimonController : MonoBehaviour
                 if (counter == sequence.Count) {
                     playerTurn = false;
                     level++;
+                    if (level > highestLevel) {
+                        highestLevel = level;
+                        HighestLevelText.text = "Highest Level: " + highestLevel.ToString();
+                    }
+                    delay = Mathf.Max(delayMin, delay - delayDecrease);
+                    if (delay <= 0) {
+                        delay = delayMin;
+                    }
+                    scorelevel.text = "Level: " + level.ToString();
                     counter = 0;
                     AddToSequence();
                 }
-            } else {    
+            } else {
+                GameOverText.text = "Game Over!";   
                 Debug.Log("Game Over!");
             }
         }
+    }
+
+    public void ResetGame()
+    {
+        sequence.Clear();
+        level = 1;
+        scorelevel.text = "Level: " + level.ToString();
+        GameOverText.text = "";
+        counter = 0;
+        playerTurn = false;
+        delay = 1.0f;
+        AddToSequence();
     }
 
     void AddToSequence()

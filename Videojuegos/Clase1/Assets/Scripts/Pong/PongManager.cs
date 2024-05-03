@@ -63,7 +63,7 @@ public class PongManager : MonoBehaviour
     }
     
 
-    // INcrease the score of the specified player
+    // Increase the score of the specified player
     public void Score(string side)
     {
         if(side == "left")
