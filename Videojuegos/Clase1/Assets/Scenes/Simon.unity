@@ -501,6 +501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 358981688}
   - component: {fileID: 358981689}
+  - component: {fileID: 358981690}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -549,6 +550,23 @@ MonoBehaviour:
   HighestLevelText: {fileID: 1579446447}
   delayDecrease: 0.05
   delayMin: 0.1
+  apiData: "\r\n    {\r\n        \"buttons\": [\r\n            {\r\n               
+    \"id\": 0,\r\n                \"r\": 1.0,\r\n                \"g\": 0,\r\n               
+    \"b\": 0.5\r\n            }\r\n        ]\r\n    }\r\n    "
+--- !u!114 &358981690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358981687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93fb1167b70ac3c4ebd15e5e60efd89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: http://localhost:3000
+  getEndpoint: /buttons
 --- !u!1 &368026073
 GameObject:
   m_ObjectHideFlags: 0
