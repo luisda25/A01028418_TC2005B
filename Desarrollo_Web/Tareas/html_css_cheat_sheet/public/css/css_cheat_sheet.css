@@ -1,0 +1,13 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#border_style {
+    border: 2px solid black;
+}
+
+.div_style {
+    margin: 20px;
+    padding: 30px;
+    border-radius: 10px;
+}
