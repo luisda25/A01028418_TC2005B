@@ -1,13 +1,106 @@
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #260016;
+}
+
+html {
+    background-color: #e68a6c;
+}
+
+a {
+    color: #ffe6bd;
 }
 
 #border_style {
-    border: 2px solid black;
+    border: 2px solid #8a2f62;
+}
+
+#border_radius {
+    border-radius: 10px;
+}
+
+#background_style {
+    background-image: url("/Images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#margin_style {
+    margin: 10px;
+}
+
+#overflow_style {
+    overflow: hidden;
+}
+
+#padding_style {
+    padding: 10px;
+}
+
+#display_style {
+    display: inline-block;
+}
+
+#position_style {
+    position: absolute;
+}
+
+#list_style {
+    list-style: georgian;
+}
+
+#filter_style {
+    filter: blur(2px);
 }
 
 .div_style {
     margin: 20px;
     padding: 30px;
-    border-radius: 10px;
+    border: 4px solid #8a2f62;
+    background-color: #ffcc7a;
 }
+
+.div_style .border_left {
+    border-left: 2px solid #8a2f62;
+}
+
+.div_style .border_right {
+    border-right: 2px solid #8a2f62;
+}
+
+.div_style .border_bottom {
+    border-bottom: 2px solid #8a2f62;
+}
+
+.div_style .border_top {
+    border-top: 2px solid #8a2f62;
+}
+
+.div_style .color_style {
+    color: white;
+}
+
+.div_style .font_style {
+    font: 12pt/14pt sans-serif;
+}
+
+.div_style .fontf_style {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.div_style .fonts_style {
+    font-style: italic;
+}
+
+.div_style .fontw_style {
+    font-weight: bold;
+}
+
+.div_style .width_style {
+    width: 500px;
+}
+
+.div_style .height_style {
+    height: 200px;
+}
+
