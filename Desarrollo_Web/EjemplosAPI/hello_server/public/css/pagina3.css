@@ -6,7 +6,6 @@ h1 {
 
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border: 2px solid black;
 }
 
 a {
@@ -33,7 +32,7 @@ body {
 .div_style {
     margin: 20px;
     padding: 30px;
-    border-radius: 10px;
+    border: 2px solid black;
 }
 
 #button_styles {
